@@ -18,9 +18,11 @@ class Vote extends Component {
         window.localStorage.setItem('state', JSON.stringify(state));
         super.setState(state);
       }
-    // reset(){
-    //    localStorage.clear();
-    //   }
+    reset(state){
+       window.localStorage.clear(state);
+       console.log("hello");
+    //    console.log(window.localStorage.getItem('state'));
+      }     
     vote(i){
         let newLanguageVote=this.state.languages;
         console.log(newLanguageVote[i].name);
@@ -36,7 +38,7 @@ class Vote extends Component {
         return (
         <div>
             <h1>Vote your languages</h1>
-            {/* <button onClick={this.reset}>Clear All</button> */}
+            <button onClick={this.reset}>Clear All</button>
             <div className="languages">
             {
                 this.state.languages.map((item,i)=>
