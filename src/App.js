@@ -1,21 +1,10 @@
 // import logo from './logo.svg';
 import React, { Component } from 'react';
 import './App.css';
-// import About from "./about";
-import Greet from "./components/Greet";
-// import Welcome from "./components/Welcome";
-// import Hello from "./components/Hello";
-// import Messege from "./components/Messege";
-import Counter from "./components/Counter";
-import FunctionClick from "./components/FunctionClick";
-import ClassClick from "./components/ClassClick";
-import EventBind from "./components/EventBind";
-import ParentComponent from './components/ParentComponent';
+import ComponentUnmount from './components/ComponentUnmount';
+import Lifecycle from './components/Lifecycle';
+import State from "./components/State";
 import Vote from './Task1/Vote';
-import UserGreeting from './components/UserGreeting';
-import List from './components/List';
-import LifecycleA from './components/LifecycleA';
-import LifecycleB from './components/LifecycleB';
 
 // const App=()=> {
 //   // return React.createElement("div",
@@ -34,35 +23,11 @@ class App extends Component{
   render(){
     return(
       <div className='App'>
-        {/* <LifecycleB/> */}
-        {/* <LifecycleA/> */}
-        {/* <List/> */}
-        {/* <UserGreeting/> */}
+        {/* <Lifecycle/> */}
         <Vote/>
-        {/* <ParentComponent/> */}
-        {/* <Counter/> */}
-        {/* <EventBind/> */}
-        {/* <FunctionClick/>
-        <ClassClick/>
-        <Greet name="poorvi">
-          <p>
-            This is about props
-          </p>
-          <h1>
-            poorvi
-          </h1>
-        </Greet>
-        <Greet name="Nikunj">
-          <button>
-            Action
-          </button>
-        </Greet> */}
-        {/* {/* <Greet name="Nitin"/>
-        <Welcome name="Poorvi Tiwari"/>
-        <Welcome name="Nikunj Gupta"/>
-        <About/>
-        <Hello/> 
-        <Messege/> */}
+        {/* <ComponentUnmount/> */}
+        {/* <State/> */}
+
       </div>
     )
   }
