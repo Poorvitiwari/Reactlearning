@@ -24,20 +24,10 @@ class Vote extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    window.localStorage.setItem('state', JSON.stringify(this.state.languages))
-  }
-
- //this function do not update  when Vote=4
-  shouldComponentUpdate(prevProps, prevState) {
-    const Vote = this.state.languages.map(({ vote }) => vote)
-    for (let i = 0; i < Vote.length; i++) {
-      if (Vote[i] === 4) {
-        return false
-      }
+    if(this.state.languages !== prevState.language){
+      window.localStorage.setItem('state', JSON.stringify(this.state.languages))
     }
-    return true
   }
-
   //Just used this function for understading this hides the whole UI 
   componentWillUnmount(){
     console.log("component ie hidden now");
@@ -68,10 +58,10 @@ class Vote extends Component {
         <button onClick={this.resetState.bind(this)}>Clear All</button>
         <div className="languages">
           {
-            this.state.languages.map((item, index) =>
+            this.state.languages.map(({name,vote}, index)=>
               <div key={index} className='item'>
-                <div className='voteCount' >{item.vote}</div>
-                <div className='lnaguageName'>{item.name}</div>
+                <div className='voteCount' >{vote}</div>
+                <div className='lnaguageName'>{name}</div>
                 <button onClick={this.voteIncrement.bind(this, index)}>Vote ME</button>
               </div>
             )
@@ -90,12 +80,16 @@ class Child extends Component{
        show:false
     }
   }
+  handleStartGame(){
+    this.setState({show:!this.state.show})
+    // console.log(this.state.show);
+  }
   render() {
       return (
         <div>
           <h2>Welcome To The Voting Game</h2>
-          {this.state.show?<Vote/>:null}
-          {this.state.show?<button onClick={()=>{this.setState({show:!this.state.show})}}>End The Game</button>:<button onClick={()=>{this.setState({show:!this.state.show})}}>Start the Game</button>}
+          {this.state.show&&<Vote/>}
+          {this.state.show?<button onClick={()=>this.handleStartGame()}>End The Game</button>:<button onClick={()=>this.handleStartGame()}>Start the Game</button>}
           </div>
       )
     }
