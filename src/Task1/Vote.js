@@ -12,8 +12,7 @@ class Vote extends Component {
         { name: "Kotlin", vote: 0 },
       ]
     }
-  }
-
+   }
   //setting localstorage using componentDidMount and ComponentDidUpdate
   componentDidMount() {
     if (window.localStorage.getItem('state')) {
