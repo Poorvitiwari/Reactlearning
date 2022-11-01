@@ -1,72 +1,28 @@
-// import logo from './logo.svg';
-import React, { Component } from 'react';
-import './App.css';
-// import About from "./about";
-import Greet from "./components/Greet";
-// import Welcome from "./components/Welcome";
-// import Hello from "./components/Hello";
-// import Messege from "./components/Messege";
-import Counter from "./components/Counter";
-import FunctionClick from "./components/FunctionClick";
-import ClassClick from "./components/ClassClick";
-import EventBind from "./components/EventBind";
-import ParentComponent from './components/ParentComponent';
-import Vote from './Task1/Vote';
-import UserGreeting from './components/UserGreeting';
-import List from './components/List';
-import LifecycleA from './components/LifecycleA';
-import LifecycleB from './components/LifecycleB';
-
-// const App=()=> {
-//   // return React.createElement("div",
-//   // {className:"App"},
-//   // React.createElement("h1",null,"Hello ReactJS App!")
-//   // );
-//   return (
-//     <div className='App'>
-//       <h1>Hello JSX!</h1>
-//       <About />
-//     </div>
-//   );
-// }
-
-class App extends Component{
-  render(){
-    return(
-      <div className='App'>
-        {/* <LifecycleB/> */}
-        {/* <LifecycleA/> */}
-        {/* <List/> */}
-        {/* <UserGreeting/> */}
-        <Vote/>
-        {/* <ParentComponent/> */}
-        {/* <Counter/> */}
-        {/* <EventBind/> */}
-        {/* <FunctionClick/>
-        <ClassClick/>
-        <Greet name="poorvi">
-          <p>
-            This is about props
-          </p>
-          <h1>
-            poorvi
-          </h1>
-        </Greet>
-        <Greet name="Nikunj">
-          <button>
-            Action
-          </button>
-        </Greet> */}
-        {/* {/* <Greet name="Nitin"/>
-        <Welcome name="Poorvi Tiwari"/>
-        <Welcome name="Nikunj Gupta"/>
-        <About/>
-        <Hello/> 
-        <Messege/> */}
-      </div>
-    )
+import React, { Component } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import BookStore from "./Online_BookStore/BookStore";
+import BookDetail from "./Online_BookStore/BookDetail";
+import Header from "./Online_BookStore/Header";
+import SignUp from "./Online_BookStore/SignUp";
+import Login from "./Online_BookStore/Login";
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={<SignUp />} />
+            <Route path="Login" element={<Login />} />
+            <Route path="bookstore" element={<BookStore />} />
+            <Route path="books/:id" element={<BookDetail />} />
+          </Routes>
+        </div>
+      </Router>
+    );
   }
 }
-
 
 export default App;
