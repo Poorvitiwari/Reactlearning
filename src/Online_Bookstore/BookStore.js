@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Row, Col, Container, Form } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
+import {Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ReviewedBooks from "./ReviewedBooks";
@@ -42,7 +43,6 @@ function BookStore() {
 
   return (
     <>
-      <h1>Books</h1>
       <Form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,28 +50,26 @@ function BookStore() {
           placeholder="search for books"
         />
       </Form>
-      <div className="container mt-3">
-        <section className="left_data d-flex justify-content-between">
-          <div className=" left_data mt-3 p-3" style={{ width: "100%" }}>
-            {result.map(({ isbn13, title, image }) => (
-              <div className="card" key={isbn13}>
+<div className="container">
+    <div className="row justify-content-center">
+        <div className="col-6">
+        <h1>Books</h1>
+        {result.map(({ isbn13, title, image }) => (
+              <Card style={{ width: '28rem' }} key={isbn13}>
                 <Link to={`/books/${isbn13}`}>
-                  <img src={image} />
+                  <img src={image} alt="Books"/>
                   <div className="bottom">
                     <h3>{title}</h3>
                   </div>
                 </Link>
-              </div>
+              </Card>
             ))}
-          </div>
-        </section>
-        <section className="left_data d-flex justify-content-between">
-          <div className=" left_data mt-3 p-3" style={{ width: "100%" }}>
-            <ReviewedBooks/>
-          </div>
-        </section>
-      </div>
-      <div></div>
+        </div>
+        <div className="col-6">
+        <ReviewedBooks/>
+        </div>
+    </div>
+</div>
     </>
   );
 }
