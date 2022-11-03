@@ -18,7 +18,7 @@ const ReviewedBooks = () => {
     if(ReviewBooksData){
        reviewedDataByUser = ReviewBooksData[userName];
     }
-    if (!user) {
+    if (!window.localStorage.getItem("user_login")) {
       navigate("/");
     } else if (reviewedDataByUser) {
       let arr = [];
@@ -31,7 +31,7 @@ const ReviewedBooks = () => {
   }, []);
   return (
     <>
-      <h1 className={darkMode ? "about-details-dark" : "about-details"}>Reviewed Books </h1>
+      <h1>Reviewed Books </h1>
       {reviewData.length > 0 ? (
         reviewData.map(({ isbn13, title, image, rating, comment }) => (
           <ReviewCard

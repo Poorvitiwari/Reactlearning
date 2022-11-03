@@ -17,7 +17,7 @@ const BookDetail = () => {
   const navigate = useNavigate();
   const{user}=useContext(UserAuthentication)
   const{booksData}=useFetch(`https://api.itbook.store/1.0/books/${id}`)
-  handleSubmit({id,review,booksData,user})
+  handleSubmit({id,rating,booksData,comment})
   useEffect(() => {
     if (!user) {
       navigate("/");
