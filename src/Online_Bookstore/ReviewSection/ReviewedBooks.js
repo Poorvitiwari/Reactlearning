@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { useNavigate } from "react-router-dom";
+import ReviewCard from "./ReviewCard";
 const ReviewedBooks = () => {
   const [reviewData, setReviewData] = useState([]);
   const navigate = useNavigate();
@@ -38,18 +37,7 @@ const ReviewedBooks = () => {
     {console.log("data",reviewData)}
     {
       reviewData.length > 0 ? reviewData.map(({ isbn13, title, image, rating, comment }) => (
-        <Card style={{ width: '20rem' }} key={isbn13}>
-          <Card.Img variant="top" src={image} />
-          <Card.Body>
-            <Card.Title>Book-{title}</Card.Title>
-            <Card.Text>
-              Review-{comment}
-            </Card.Text>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>Rating-{rating}</ListGroup.Item>
-          </ListGroup>
-        </Card>
+       <ReviewCard isbn13={isbn13} title={title} image={image} rating={rating} comment={comment} />
       ))
         : <>
           <h6>No books reviewed</h6>
