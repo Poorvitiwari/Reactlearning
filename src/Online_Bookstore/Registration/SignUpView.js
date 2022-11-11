@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Row, Col, Container, Form } from "react-bootstrap"
 
 import { NavLink } from 'react-router-dom'
+import { ThemeContext } from "../Context/ThemeContext";
 const SignUpView = ({getdata,addData}) => {
+  const { darkMode } = useContext(ThemeContext);
   return (
-    <>
+    <div className={darkMode ? "about-details-dark" : "about-details"}>
       <div className="mt-3" style={{ width: "100%" }}>
         <h3 className="text-center col-lg-6">Sign Up</h3>
         <Container fluid>
-          <Row>
+          <Row >
             <Col align="center">
               <Form>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicName">
@@ -62,7 +64,7 @@ const SignUpView = ({getdata,addData}) => {
           </Row>
         </Container>
       </div>
-    </>
+    </div>
   );
 };
 

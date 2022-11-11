@@ -10,12 +10,12 @@ import axios from 'axios'
     
     }catch(err)
     {
-      console.log(err);
+      setBookData(err)
     }
   },[url])
   useEffect(()=>{
     getBooksData();
-  },[url,getBooksData])
+  },[getBooksData])
 
   return{booksData}
 }

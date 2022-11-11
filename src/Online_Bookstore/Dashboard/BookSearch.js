@@ -17,7 +17,7 @@ const BookSearch = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (search === "") {
+    if (!search) {
       props.getBookData();
     } else {
       setSearchedBook(booksData.books);

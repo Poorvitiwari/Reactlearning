@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../Context/ThemeContext";
 import SignUpView from "./SignUpView";
 
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { darkMode } = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState({
     name: "",
     email: "",
@@ -55,9 +57,9 @@ const SignUp = () => {
   };
   
   return (
-    <>
+    <div className={darkMode ? "canvas-dark" : "canvas"}>
       <SignUpView getdata={getdata} addData={addData} />
-    </>
+    </div>
   );
 };
 

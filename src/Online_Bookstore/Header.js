@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import {Link} from "react-router-dom"
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+import { ThemeContext } from './Context/ThemeContext'
+
 
 const Header = () => {
+    const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const handleTheme = () => {
+    setDarkMode(!darkMode);
+    console.log(darkMode);
+    localStorage.setItem("darkMode", !darkMode);
+  };
   return (
       <>
-          <Navbar bg="dark" variant="dark">
+      
+          <Navbar bg="dark" variant="dark" >
               <Container>
                 {
                     window.localStorage.getItem("user_login")?
@@ -23,11 +33,12 @@ const Header = () => {
                     </Nav>
                     </>
                 }
-                 
+                <BootstrapSwitchButton onChange={handleTheme} checked={false} onstyle="outline-info" offstyle="outline-primary" />
               </Container>
           </Navbar>
       </>
   )
 }
+
 
 export default Header

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../Context/ThemeContext";
 const BooksView = ({isbn13,title,image}) => {
+  const { darkMode } = useContext(ThemeContext);
   return (
-    <React.Fragment >
-          <Card style={{ width: "28rem" }} >
+    <div className={darkMode ? "canvas-dark" : "canvas"}>
+          <Card style={{ width: "28rem" }} className={darkMode ? "about-details-dark" : "about-details"} >
             <Link to={`/books/${isbn13}`}>
              { image && <img src={image} alt="Books" /> }
               <div className="bottom">
@@ -12,7 +14,7 @@ const BooksView = ({isbn13,title,image}) => {
               </div>
             </Link>
           </Card>
-    </React.Fragment>
+    </div>
   );
 };
 

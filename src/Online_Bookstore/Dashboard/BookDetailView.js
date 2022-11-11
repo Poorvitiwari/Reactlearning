@@ -1,27 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button,Row,Col,Container,Card,ListGroup,Form,} from "react-bootstrap";
+import { ThemeContext } from "../Context/ThemeContext";
 import {handleSubmit} from './SetReviewInLocalStorage'
 const BookDetailView = ({id,rating,booksData,setComment,comment,setRating}) => {
     const submitClick = e=>{
         e.preventDefault();
         handleSubmit({id,rating,comment});
     } 
+    const options=[
+      {value:1,label:"one"},
+      {value:2,label:"two"},
+      {value:3,label:"three"},
+      {value:4,label:"four"},
+      {value:5,label:"five"},
+      {value:6,label:"six"},
+      {value:7,label:"seven"},
+      {value:8,label:"eight"},
+      {value:9,label:"nine"},
+      {value:10,label:"ten"}
+    ]
+    console.log(options);
+    const{image,title,desc,authors,pages,year,price}=booksData
   return (
-    <>
+    <div>
       <Container fluid>
         <Row>
           <Col align="center">
             <Card className="text-center" style={{ width: "28rem" }}>
-              <Card.Img variant="top" src={booksData.image} />
+              <Card.Img variant="top" src={image} />
               <Card.Body>
-                <Card.Title>{booksData.title}</Card.Title>
-                <Card.Text>{booksData.desc}</Card.Text>
+                <Card.Title>{title}</Card.Title>
+                <Card.Text>{desc}</Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroup.Item>Author:{booksData.authors}</ListGroup.Item>
-                <ListGroup.Item>Pages:{booksData.pages}</ListGroup.Item>
-                <ListGroup.Item>Year:{booksData.year}</ListGroup.Item>
-                <ListGroup.Item>Price:{booksData.price}</ListGroup.Item>
+                <ListGroup.Item>Author:{authors}</ListGroup.Item>
+                <ListGroup.Item>Pages:{pages}</ListGroup.Item>
+                <ListGroup.Item>Year:{year}</ListGroup.Item>
+                <ListGroup.Item>Price:{price}</ListGroup.Item>
               </ListGroup>
               <Card.Body>
                 <Form onSubmit={submitClick}>
@@ -30,17 +45,11 @@ const BookDetailView = ({id,rating,booksData,setComment,comment,setRating}) => {
                       aria-label="Default select example"
                       onChange={(e) => setRating(e.target.value)}
                     >
-                      <option>Rate the book</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                      <option value="5">Five</option>
-                      <option value="6">Six</option>
-                      <option value="7">Seven</option>
-                      <option value="8">Eight</option>
-                      <option value="9">Nine</option>
-                      <option value="10">Ten</option>
+                        {options.map((option)=>{
+                          return(<option key={option.value}>{option.label}</option> 
+                            )
+                        })
+                        }
                     </Form.Select>
                   </Form.Group>
                   <Form.Group>
@@ -58,7 +67,7 @@ const BookDetailView = ({id,rating,booksData,setComment,comment,setRating}) => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

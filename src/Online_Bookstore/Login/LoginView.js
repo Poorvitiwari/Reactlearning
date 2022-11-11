@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Row, Col, Container, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { ThemeContext } from "../Context/ThemeContext";
 const LoginView = ({getdata,addData}) => {
+  const { darkMode } = useContext(ThemeContext);
   return (
-    <>
+    <div className={darkMode ? "about-details-dark" : "about-details"}>
       <div className="mt-3" style={{ width: "100%" }}>
         <h3 className="text-center col-lg-6">Login</h3>
         <Container fluid>
@@ -53,7 +55,7 @@ const LoginView = ({getdata,addData}) => {
           </Row>
         </Container>
       </div>
-    </>
+    </div>
   );
 };
 

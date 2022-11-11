@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../Context/ThemeContext";
+import { UserAuthentication } from "../Context/UserAuthentication";
 import ReviewCard from "./ReviewCard";
 const ReviewedBooks = () => {
+  const { darkMode } = useContext(ThemeContext);
   const [reviewData, setReviewData] = useState([]);
   const navigate = useNavigate();
+  const{user}=useContext(UserAuthentication)
   const UserData = JSON.parse(window.localStorage.getItem("user_login"));
   const ReviewBooksData = JSON.parse(
     window.localStorage.getItem("reviewBooks")||{}
@@ -14,7 +18,7 @@ const ReviewedBooks = () => {
     if(ReviewBooksData){
        reviewedDataByUser = ReviewBooksData[userName];
     }
-    if (!window.localStorage.getItem("user_login")) {
+    if (!user) {
       navigate("/");
     } else if (reviewedDataByUser) {
       let arr = [];
@@ -27,7 +31,7 @@ const ReviewedBooks = () => {
   }, []);
   return (
     <>
-      <h1>Reviewed Books </h1>
+      <h1 className={darkMode ? "about-details-dark" : "about-details"}>Reviewed Books </h1>
       {reviewData.length > 0 ? (
         reviewData.map(({ isbn13, title, image, rating, comment }) => (
           <ReviewCard

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../Context/ThemeContext";
 import LoginView from "./LoginView";
 
 const Login = () => {
@@ -8,7 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const { darkMode } = useContext(ThemeContext);
   const getdata = (e) => {
     const { value, name } = e.target;
     setInputValue({ ...inputValue, [name]: value });
@@ -16,7 +17,6 @@ const Login = () => {
   };
   const addData = (e) => {
     e.preventDefault();
-
     const getUserData = window.localStorage.getItem("inputValue");
     console.log(getUserData);
 
@@ -48,9 +48,9 @@ const Login = () => {
     }
   };
   return (
-    <>
+    <div className={darkMode ? "canvas-dark" : "canvas"}>
       <LoginView getdata={getdata} addData={addData} />
-    </>
+    </div>
   );
 };
 
