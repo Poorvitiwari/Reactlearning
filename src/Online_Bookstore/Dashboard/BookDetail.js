@@ -7,13 +7,17 @@ import BookDetailView from "./BookDetailView";
 import {handleSubmit} from './SetReviewInLocalStorage'
 const BookDetail = () => {
   const { darkMode } = useContext(ThemeContext);
-  const [comment, setComment] = useState("");
-  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState({
+    comment: '',
+    rating: 0
+})
+  // const [comment, setComment] = useState("");
+  // const [rating, setRating] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
   const{user}=useContext(UserAuthentication)
   const{booksData}=useFetch(`https://api.itbook.store/1.0/books/${id}`)
-  handleSubmit({id,rating,booksData,comment,user})
+  handleSubmit({id,review,booksData,user})
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -22,10 +26,9 @@ const BookDetail = () => {
   const props = {
     id,
     booksData,
-    setRating,
-    rating,
-    comment,
-    setComment
+    review,
+    setReview
+    
   }
   return (
     <>

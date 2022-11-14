@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { Button,Row,Col,Container,Card,ListGroup,Form,} from "react-bootstrap";
-import { ThemeContext } from "../Context/ThemeContext";
 import {handleSubmit} from './SetReviewInLocalStorage'
-const BookDetailView = ({id,rating,booksData,setComment,comment,setRating}) => {
+const BookDetailView = ({id,booksData,review,setReview}) => {
     const submitClick = e=>{
         e.preventDefault();
-        handleSubmit({id,rating,comment});
+        handleSubmit({id,review});
     } 
     const options=[
       {value:1,label:"one"},
@@ -43,7 +42,7 @@ const BookDetailView = ({id,rating,booksData,setComment,comment,setRating}) => {
                   <Form.Group>
                     <Form.Select
                       aria-label="Default select example"
-                      onChange={(e) => setRating(e.target.value)}
+                      onChange={(e) => setReview(e.target.value)}
                     >
                         {options.map((option)=>{
                           return(<option key={option.value}>{option.label}</option> 
@@ -57,7 +56,7 @@ const BookDetailView = ({id,rating,booksData,setComment,comment,setRating}) => {
                       type="text"
                       placeholder="comment here"
                       value={comment}
-                      onChange={(e) => setComment(e.target.value)}
+                      onChange={(e) => setReview(e.target.value)}
                     />
                   </Form.Group>
                   <Button type="submit">Rate</Button>
