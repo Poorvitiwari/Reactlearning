@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Button,Row,Col,Container,Card,ListGroup,Form,} from "react-bootstrap";
 import { ThemeContext } from "../Context/ThemeContext";
 import {handleSubmit} from './SetReviewInLocalStorage'
-const BookDetailView = ({id,booksData,review,setReview}) => {
+const BookDetailView = ({id,booksData,review,setReview,comment,setComment}) => {
     const submitClick = e=>{
         e.preventDefault();
         handleSubmit({id,review});
@@ -57,7 +57,7 @@ const BookDetailView = ({id,booksData,review,setReview}) => {
                       type="text"
                       placeholder="comment here"
                       value={comment}
-                      onChange={(e) => setReview(e.target.value)}
+                      onChange={(e) => setComment(e.target.value)}
                     />
                   </Form.Group>
                   <Button type="submit">Rate</Button>

@@ -4,7 +4,7 @@ import { Button, Row, Col, Container, Form } from "react-bootstrap"
 import { NavLink } from 'react-router-dom'
 import { ThemeContext } from "../Context/ThemeContext";
 const SignUpView = ({getdata,addData}) => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext)?? {};
   return (
     <div className={darkMode ? "about-details-dark" : "about-details"}>
       <div className="mt-3" style={{ width: "100%" }}>

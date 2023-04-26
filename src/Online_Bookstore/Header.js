@@ -8,10 +8,10 @@ import { ThemeContext } from './Context/ThemeContext'
 
 
 const Header = () => {
-    const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const { darkMode, setDarkMode } = useContext(ThemeContext)?? {};;
   const handleTheme = () => {
     setDarkMode(!darkMode);
-    console.log(darkMode);
+    // console.log(darkMode);
     localStorage.setItem("darkMode", !darkMode);
   };
   return (

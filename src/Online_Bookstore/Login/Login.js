@@ -9,7 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext)?? {};
   const getdata = (e) => {
     const { value, name } = e.target;
     setInputValue({ ...inputValue, [name]: value });
@@ -41,7 +41,7 @@ const Login = () => {
         } else {
           console.log("user login succesfulyy");
 
-          localStorage.setItem("user_login", JSON.stringify(userlogin));
+          localStorage.setItem("user_login", JSON.stringify(userlogin[0]));
           navigate("/bookstore");
         }
       }

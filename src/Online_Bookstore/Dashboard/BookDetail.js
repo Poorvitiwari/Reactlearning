@@ -6,14 +6,15 @@ import useFetch from "../CustomHooks/useFetch";
 import BookDetailView from "./BookDetailView";
 import {handleSubmit} from './SetReviewInLocalStorage'
 const BookDetail = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext)??{};
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
-  const{user}=useContext(UserAuthentication)
+  const user=JSON.parse(localStorage.getItem("user_login"))
   const{booksData}=useFetch(`https://api.itbook.store/1.0/books/${id}`)
   handleSubmit({id,rating,booksData,comment,user})
+  console.log(booksData)
   useEffect(() => {
     if (!user) {
       navigate("/");

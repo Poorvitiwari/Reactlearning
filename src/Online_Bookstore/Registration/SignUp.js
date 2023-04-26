@@ -6,7 +6,7 @@ import SignUpView from "./SignUpView";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext)?? {};
   const [inputValue, setInputValue] = useState({
     name: "",
     email: "",

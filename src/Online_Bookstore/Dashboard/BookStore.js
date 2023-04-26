@@ -7,10 +7,11 @@ import { ThemeContext } from "../Context/ThemeContext";
 import { UserAuthentication } from "../Context/UserAuthentication";
 function BookStore() {
   const [result, setResult] = useState([]);
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext) ?? {};
   const navigate = useNavigate();
-  const{user,setUser}=useContext(UserAuthentication)
-  console.log("hello",user && user[0].name);
+  const user = JSON.parse(localStorage.getItem("user_login"));
+  const userName = user?.[0]?.name;
+  console.log("hello",JSON.parse(localStorage.getItem("user_login")));
   const getBookData = async () => {
     try {
       const response = await fetch('https://api.itbook.store/1.0/new');
@@ -22,11 +23,12 @@ function BookStore() {
 
   };
   useEffect(() => {
-    if (!(user && user[0].name)) {
+    if (user && user.name) {
+      getBookData();
+    } else {
       navigate("/");
     }
-    getBookData()
-  }, []);
+  }, [user]);
 
   return (
     <div className={darkMode ? "canvas-dark" : "canvas"}>

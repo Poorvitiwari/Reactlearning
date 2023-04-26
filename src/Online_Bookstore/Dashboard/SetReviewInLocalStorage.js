@@ -1,8 +1,9 @@
 
 exports.handleSubmit = ({id,rating,comment,booksData,user}) => {
-    const userName = user[0].name;
+    const userName = JSON.parse(localStorage.getItem("user_login"));;
     if (window.localStorage.getItem("reviewBooks")) {
-      const reviewData = JSON.parse(window.localStorage.getItem("reviewBooks"));
+      const reviewData = JSON.parse(localStorage.getItem("reviewBooks"));
+      console.log(booksData)
       if (reviewData[userName]) {
         reviewData[userName][id] = {
           rating:rating,

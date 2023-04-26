@@ -4,15 +4,16 @@ import { ThemeContext } from "../Context/ThemeContext";
 import { UserAuthentication } from "../Context/UserAuthentication";
 import ReviewCard from "./ReviewCard";
 const ReviewedBooks = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext) ?? {};
   const [reviewData, setReviewData] = useState([]);
   const navigate = useNavigate();
-  const{user}=useContext(UserAuthentication)
-  const UserData = JSON.parse(window.localStorage.getItem("user_login"));
+  const user=JSON.parse(localStorage.getItem("user_login"));
+  const UserData = JSON.parse(localStorage.getItem("user_login"));;
   const ReviewBooksData = JSON.parse(
-    window.localStorage.getItem("reviewBooks")||{}
-  );
-  const userName = UserData[0].name;
+    window.localStorage.getItem("reviewBooks") || "{}"
+);
+
+  const userName = UserData.name;
   let reviewedDataByUser={}
   useEffect(() => {
     if(ReviewBooksData){
